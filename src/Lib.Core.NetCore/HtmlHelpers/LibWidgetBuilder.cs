@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Core.HtmlHelpers
+namespace Lib.Core.NetCore.HtmlHelpers
 {
     public class LibWidgetBuilder
     {

@@ -15,18 +15,18 @@ namespace Lib.DapperORM.Repositories
     {
         public IDbConnection Connection { get; }
 
-        public IDbTransaction? Transaction { get; }
+        public IDbTransaction Transaction { get; }
         public DapperQueryRepository(IDbConnection connection)
         {
             Connection = connection;
             Transaction = null;
         }
-        public DapperQueryRepository(IDbConnection connection, IDbTransaction? transaction)
+        public DapperQueryRepository(IDbConnection connection, IDbTransaction transaction)
         {
             Connection = connection;
             Transaction = transaction;
         }
-        private void AddLog(Exception ex, string? query = "", object? param = null, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        private void AddLog(Exception ex, string query = "", object param = null, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
 
         }
@@ -73,7 +73,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public int Execute(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public int Execute(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public T ExecuteScalar<T>(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public T ExecuteScalar<T>(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public object ExecuteScalar(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public object ExecuteScalar(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public TReturn Get<TReturn>(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public TReturn Get<TReturn>(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -179,7 +179,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public List<TReturn> List<TReturn>(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<TReturn> List<TReturn>(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -192,7 +192,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public List<TReturn> List<T1, T2, TReturn>(string query, Func<T1, T2, TReturn> map, string splitColumns, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<TReturn> List<T1, T2, TReturn>(string query, Func<T1, T2, TReturn> map, string splitColumns, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -205,7 +205,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public List<TReturn> List<T1, T2, T3, TReturn>(string query, Func<T1, T2, T3, TReturn> map, string splitColumns, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<TReturn> List<T1, T2, T3, TReturn>(string query, Func<T1, T2, T3, TReturn> map, string splitColumns, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -218,34 +218,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public List<TReturn> List<T1, T2, T3, T4, TReturn>(string query, Func<T1, T2, T3, T4, TReturn> map, string splitColumns, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
-        {
-            try
-            {
-                return Connection.Query(query, map, param, Transaction, true, splitColumns, null, commandType).ToList();
-
-            }
-            catch (Exception ex)
-            {
-                AddLog(ex, query, param, callerFilePath, callerMemberName, callerLineNumber);
-                throw;
-            }
-        }
-
-        public List<TReturn> List<T1, T2, T3, T4, T5, TReturn>(string query, Func<T1, T2, T3, T4, T5, TReturn> map, string splitColumns, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
-        {
-            try
-            {
-                return Connection.Query(query, map, param, Transaction, true, splitColumns, null, commandType).ToList();
-            }
-            catch (Exception ex)
-            {
-                AddLog(ex, query, param, callerFilePath, callerMemberName, callerLineNumber);
-                throw;
-            }
-        }
-
-        public List<TReturn> List<T1, T2, T3, T4, T5, T6, TReturn>(string query, Func<T1, T2, T3, T4, T5, T6, TReturn> map, string splitColumns, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<TReturn> List<T1, T2, T3, T4, TReturn>(string query, Func<T1, T2, T3, T4, TReturn> map, string splitColumns, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -259,7 +232,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public List<TReturn> List<T1, T2, T3, T4, T5, T6, T7, TReturn>(string query, Func<T1, T2, T3, T4, T5, T6, T7, TReturn> map, string splitColumns, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<TReturn> List<T1, T2, T3, T4, T5, TReturn>(string query, Func<T1, T2, T3, T4, T5, TReturn> map, string splitColumns, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -272,7 +245,34 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public IDapperMultipleQueryResultRepository Multiple(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<TReturn> List<T1, T2, T3, T4, T5, T6, TReturn>(string query, Func<T1, T2, T3, T4, T5, T6, TReturn> map, string splitColumns, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        {
+            try
+            {
+                return Connection.Query(query, map, param, Transaction, true, splitColumns, null, commandType).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex, query, param, callerFilePath, callerMemberName, callerLineNumber);
+                throw;
+            }
+        }
+
+        public List<TReturn> List<T1, T2, T3, T4, T5, T6, T7, TReturn>(string query, Func<T1, T2, T3, T4, T5, T6, T7, TReturn> map, string splitColumns, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        {
+            try
+            {
+                return Connection.Query(query, map, param, Transaction, true, splitColumns, null, commandType).ToList();
+            }
+            catch (Exception ex)
+            {
+                AddLog(ex, query, param, callerFilePath, callerMemberName, callerLineNumber);
+                throw;
+            }
+        }
+
+        public IDapperMultipleQueryResultRepository Multiple(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -302,7 +302,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public DataTable DataTable(string query, object? param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public DataTable DataTable(string query, object param = null, CommandType commandType = CommandType.Text, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {
@@ -323,7 +323,7 @@ namespace Lib.DapperORM.Repositories
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, List<Tuple<object, long, bool>>> Insert(Action<IDapperInsertRepository> config, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public IDictionary<string, List<Tuple<object, long, bool>>> Insert(Action<IDapperInsertRepository> config, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             try
             {

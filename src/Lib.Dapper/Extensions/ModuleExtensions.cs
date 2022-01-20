@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.DapperORM.Extensions
-{
-    public static class ModuleExtensions
+    public static partial class Extensions
     {
+        public static Lib.DapperORM.Repositories.IDapperConnectRepository Dapper(this Lib.DapperORM.IDapper @this)
+        {
+            return new Lib.DapperORM.Repositories.DapperConnectRepository();
+        }
     }
-}

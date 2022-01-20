@@ -7,35 +7,53 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{46171B1C-64B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "template", "template", "{92EB883D-389C-44F7-B4FE-6A09E00076C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.ClassLibraryTemplate", "template\Lib.ClassLibraryTemplate\Lib.ClassLibraryTemplate.csproj", "{FFBDA89E-A592-491E-B456-195C20D9921A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.ClassLibraryTemplate", "template\Lib.ClassLibraryTemplate\Lib.ClassLibraryTemplate.csproj", "{FFBDA89E-A592-491E-B456-195C20D9921A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Core", "src\Lib.Core\Lib.Core.csproj", "{D5531078-CCB0-4D08-B3D6-99EB8EC7EA91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Core", "src\Lib.Core\Lib.Core.csproj", "{D5531078-CCB0-4D08-B3D6-99EB8EC7EA91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.DapperORM", "src\Lib.Dapper\Lib.DapperORM.csproj", "{A649E251-1100-40A2-A9DA-71B6C3C74F95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.DapperORM", "src\Lib.Dapper\Lib.DapperORM.csproj", "{A649E251-1100-40A2-A9DA-71B6C3C74F95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Logger", "src\Lib.Logger\Lib.Logger.csproj", "{0BACA74E-A1E8-4D20-81D8-4E6DE275ADFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Logger", "src\Lib.Logger\Lib.Logger.csproj", "{0BACA74E-A1E8-4D20-81D8-4E6DE275ADFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Localization", "src\Lib.Localization\Lib.Localization.csproj", "{8015FD26-013E-4AF8-879B-EA4FCF55D008}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Localization", "src\Lib.Localization\Lib.Localization.csproj", "{8015FD26-013E-4AF8-879B-EA4FCF55D008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.DataTablesNet", "src\Lib.JSDataTable\Lib.DataTablesNet.csproj", "{26609CBC-FAD3-44C1-ADD0-F73BD9C97814}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.DataTablesNet", "src\Lib.JSDataTable\Lib.DataTablesNet.csproj", "{26609CBC-FAD3-44C1-ADD0-F73BD9C97814}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7214DABB-FF38-4C11-B993-649E894CAFA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "test\WebApplication1\WebApplication1.csproj", "{AE9907A7-F735-4928-BDF3-A981C7E8C192}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "test\WebApplication1\WebApplication1.csproj", "{AE9907A7-F735-4928-BDF3-A981C7E8C192}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{23F6CE82-A09C-4910-83FA-C9F1156DDE5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Extensions.System", "src\Extensions\Lib.Extensions.String\Lib.Extensions.System.csproj", "{50399CD1-27A5-4D25-A2F2-408774E2C07C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System", "src\Extensions\Lib.Extensions.String\Lib.Extensions.System.csproj", "{50399CD1-27A5-4D25-A2F2-408774E2C07C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Extensions.System.ComponentModel", "Lib.Extensions.BackgroundWorker\Lib.Extensions.System.ComponentModel.csproj", "{172C1552-4108-4D28-85F5-B70692467FA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.ComponentModel", "Lib.Extensions.BackgroundWorker\Lib.Extensions.System.ComponentModel.csproj", "{172C1552-4108-4D28-85F5-B70692467FA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Extensions.System.Data", "src\Extensions\Lib.Extensions.System.Data\Lib.Extensions.System.Data.csproj", "{B36BB774-78DF-40B9-9926-81757796673B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Data", "src\Extensions\Lib.Extensions.System.Data\Lib.Extensions.System.Data.csproj", "{B36BB774-78DF-40B9-9926-81757796673B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Extensions.System.Windows.Forms", "src\Extensions\Lib.Extensions.System.Windows.Forms\Lib.Extensions.System.Windows.Forms.csproj", "{7E74292E-76FF-4DF6-89A9-1AF616066336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Windows.Forms", "src\Extensions\Lib.Extensions.System.Windows.Forms\Lib.Extensions.System.Windows.Forms.csproj", "{7E74292E-76FF-4DF6-89A9-1AF616066336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Extensions.System.Collections", "src\Extensions\Lib.Extensions.System.Collections\Lib.Extensions.System.Collections.csproj", "{262CB273-36BE-463A-8204-3321CF208A04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Collections", "src\Extensions\Lib.Extensions.System.Collections\Lib.Extensions.System.Collections.csproj", "{262CB273-36BE-463A-8204-3321CF208A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Excel", "src\Lib.Excel\Lib.Excel.csproj", "{B89B3D29-A0DA-42E1-9820-7CFDE11CDAAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Excel", "src\Lib.Excel\Lib.Excel.csproj", "{B89B3D29-A0DA-42E1-9820-7CFDE11CDAAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions", "src\Extensions\Lib.Extensions\Lib.Extensions.csproj", "{928C523F-16FA-4D1C-AE72-F444C6A70F26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.WinForms", "src\Extensions\Lib.Extensions.WinForms\Lib.Extensions.WinForms.csproj", "{B9E3ED93-C171-4DA4-8B2D-8A96E541058F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.Web", "src\Extensions\Lib.Extensions.Web\Lib.Extensions.Web.csproj", "{AE9AB52A-5EA8-424C-B0CE-E1699BC40456}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Localization.NetCore", "src\Lib.Localization.NetCore\Lib.Localization.NetCore.csproj", "{AD2DCC28-6763-47F9-A699-AF889C4DC10D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.DapperORM.WinForms", "src\Lib.DapperORM.WinForms\Lib.DapperORM.WinForms.csproj", "{8DDD269F-AD3C-464F-8042-9CF4892D7F61}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Core.WinForms", "src\Lib.Core.WinForms\Lib.Core.WinForms.csproj", "{26677956-CB5B-42EC-AEF6-871DE910EA54}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.DapperORM.NetCore", "src\Lib.DapperORM.NetCore\Lib.DapperORM.NetCore.csproj", "{18E5FF49-F31D-4611-9EEC-E19C7B929398}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Core.NetCore", "src\Lib.Core.NetCore\Lib.Core.NetCore.csproj", "{3D9575BA-B6F6-42BC-9B2A-336F0F8420B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "test\WindowsFormsApp1\WindowsFormsApp1.csproj", "{3DBCBE24-9602-42B1-9463-7391F2980195}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +113,42 @@ Global
 		{B89B3D29-A0DA-42E1-9820-7CFDE11CDAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B89B3D29-A0DA-42E1-9820-7CFDE11CDAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B89B3D29-A0DA-42E1-9820-7CFDE11CDAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{928C523F-16FA-4D1C-AE72-F444C6A70F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928C523F-16FA-4D1C-AE72-F444C6A70F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928C523F-16FA-4D1C-AE72-F444C6A70F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928C523F-16FA-4D1C-AE72-F444C6A70F26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E3ED93-C171-4DA4-8B2D-8A96E541058F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E3ED93-C171-4DA4-8B2D-8A96E541058F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E3ED93-C171-4DA4-8B2D-8A96E541058F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E3ED93-C171-4DA4-8B2D-8A96E541058F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE9AB52A-5EA8-424C-B0CE-E1699BC40456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9AB52A-5EA8-424C-B0CE-E1699BC40456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9AB52A-5EA8-424C-B0CE-E1699BC40456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9AB52A-5EA8-424C-B0CE-E1699BC40456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD2DCC28-6763-47F9-A699-AF889C4DC10D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD2DCC28-6763-47F9-A699-AF889C4DC10D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD2DCC28-6763-47F9-A699-AF889C4DC10D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD2DCC28-6763-47F9-A699-AF889C4DC10D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DDD269F-AD3C-464F-8042-9CF4892D7F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDD269F-AD3C-464F-8042-9CF4892D7F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDD269F-AD3C-464F-8042-9CF4892D7F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDD269F-AD3C-464F-8042-9CF4892D7F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26677956-CB5B-42EC-AEF6-871DE910EA54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26677956-CB5B-42EC-AEF6-871DE910EA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26677956-CB5B-42EC-AEF6-871DE910EA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26677956-CB5B-42EC-AEF6-871DE910EA54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E5FF49-F31D-4611-9EEC-E19C7B929398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E5FF49-F31D-4611-9EEC-E19C7B929398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E5FF49-F31D-4611-9EEC-E19C7B929398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E5FF49-F31D-4611-9EEC-E19C7B929398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9575BA-B6F6-42BC-9B2A-336F0F8420B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9575BA-B6F6-42BC-9B2A-336F0F8420B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9575BA-B6F6-42BC-9B2A-336F0F8420B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9575BA-B6F6-42BC-9B2A-336F0F8420B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DBCBE24-9602-42B1-9463-7391F2980195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DBCBE24-9602-42B1-9463-7391F2980195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DBCBE24-9602-42B1-9463-7391F2980195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DBCBE24-9602-42B1-9463-7391F2980195}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +168,15 @@ Global
 		{7E74292E-76FF-4DF6-89A9-1AF616066336} = {23F6CE82-A09C-4910-83FA-C9F1156DDE5D}
 		{262CB273-36BE-463A-8204-3321CF208A04} = {23F6CE82-A09C-4910-83FA-C9F1156DDE5D}
 		{B89B3D29-A0DA-42E1-9820-7CFDE11CDAAE} = {46171B1C-64BA-444D-952F-70B875E4F072}
+		{928C523F-16FA-4D1C-AE72-F444C6A70F26} = {23F6CE82-A09C-4910-83FA-C9F1156DDE5D}
+		{B9E3ED93-C171-4DA4-8B2D-8A96E541058F} = {23F6CE82-A09C-4910-83FA-C9F1156DDE5D}
+		{AE9AB52A-5EA8-424C-B0CE-E1699BC40456} = {23F6CE82-A09C-4910-83FA-C9F1156DDE5D}
+		{AD2DCC28-6763-47F9-A699-AF889C4DC10D} = {46171B1C-64BA-444D-952F-70B875E4F072}
+		{8DDD269F-AD3C-464F-8042-9CF4892D7F61} = {46171B1C-64BA-444D-952F-70B875E4F072}
+		{26677956-CB5B-42EC-AEF6-871DE910EA54} = {46171B1C-64BA-444D-952F-70B875E4F072}
+		{18E5FF49-F31D-4611-9EEC-E19C7B929398} = {46171B1C-64BA-444D-952F-70B875E4F072}
+		{3D9575BA-B6F6-42BC-9B2A-336F0F8420B1} = {46171B1C-64BA-444D-952F-70B875E4F072}
+		{3DBCBE24-9602-42B1-9463-7391F2980195} = {7214DABB-FF38-4C11-B993-649E894CAFA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {958716EA-0216-464C-A908-38DBE270B61F}

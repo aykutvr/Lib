@@ -6,28 +6,27 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Lib.Core.Extensions;
 namespace Lib.DapperORM.Repositories
 {
     public class DapperInsertRepository : IDapperInsertRepository, IDisposable
     {
         public IDbConnection Connection { get; }
-        public IDbTransaction? Transaction { get; }
-        internal Dictionary<string, List<Tuple<object, long, bool>>> dicResult { get; set; }
+        public IDbTransaction Transaction { get; }
+        internal IDictionary<string, List<Tuple<object, long, bool>>> dicResult { get; set; }
         public DapperInsertRepository(IDbConnection connection)
         {
             Connection = connection;
             Transaction = null;
             dicResult = new Dictionary<string, List<Tuple<object, long, bool>>>();
         }
-        public DapperInsertRepository(IDbConnection connection, IDbTransaction? transaction)
+        public DapperInsertRepository(IDbConnection connection, IDbTransaction transaction)
         {
             Connection = connection;
             Transaction = transaction;
             dicResult = new Dictionary<string, List<Tuple<object, long, bool>>>();
         }
 
-        private void AddLog(Exception ex, string query = "", object? param = null, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        private void AddLog(Exception ex, string query = "", object param = null, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
 
         }
@@ -38,7 +37,7 @@ namespace Lib.DapperORM.Repositories
             {
                 long insertResult = Connection.Insert<T>(data, Transaction);
                 resultData = data;
-                dicResult.AddIfNotContains(nameof(T), new List<Tuple<object, long, bool>>());
+                dicResult.AddIfNotContainsKey(typeof(T).Name, new List<Tuple<object, long, bool>>());
                 dicResult[nameof(T)].Add(new Tuple<object, long, bool>(data, insertResult, true));
                 return this;
             }
@@ -58,7 +57,7 @@ namespace Lib.DapperORM.Repositories
             {
                 long insertResult = Connection.Insert<T>(data, Transaction);
                 resultData = insertResult;
-                dicResult.AddIfNotContains(nameof(T), new List<Tuple<object, long, bool>>());
+                dicResult.AddIfNotContainsKey(nameof(T), new List<Tuple<object, long, bool>>());
                 dicResult[nameof(T)].Add(new Tuple<object, long, bool>(data, insertResult, true));
                 return this;
             }
@@ -79,7 +78,7 @@ namespace Lib.DapperORM.Repositories
                 {
                     long insertResult = Connection.Insert<T>(item, Transaction);
                     resultData.Add(insertResult);
-                    dicResult.AddIfNotContains(nameof(T), new List<Tuple<object, long, bool>>());
+                    dicResult.AddIfNotContainsKey(nameof(T), new List<Tuple<object, long, bool>>());
                     dicResult[nameof(T)].Add(new Tuple<object, long, bool>(item, insertResult, true));
                 }
 
@@ -102,7 +101,7 @@ namespace Lib.DapperORM.Repositories
                 {
                     long insertResult = Connection.Insert<T>(item, Transaction);
                     resultData.Add(item);
-                    dicResult.AddIfNotContains(nameof(T), new List<Tuple<object, long, bool>>());
+                    dicResult.AddIfNotContainsKey(nameof(T), new List<Tuple<object, long, bool>>());
                     dicResult[nameof(T)].Add(new Tuple<object, long, bool>(item, insertResult, true));
                 }
 
@@ -121,7 +120,7 @@ namespace Lib.DapperORM.Repositories
             try
             {
                 long insertResult = Connection.Insert<T>(data, Transaction);
-                dicResult.AddIfNotContains(nameof(T), new List<Tuple<object, long, bool>>());
+                dicResult.AddIfNotContainsKey(nameof(T), new List<Tuple<object, long, bool>>());
                 dicResult[nameof(T)].Add(new Tuple<object, long, bool>(data, insertResult, true));
                 return this;
             }
@@ -140,7 +139,7 @@ namespace Lib.DapperORM.Repositories
                 foreach (var item in data)
                 {
                     long insertResult = Connection.Insert<T>(item, Transaction);
-                    dicResult.AddIfNotContains(nameof(T), new List<Tuple<object, long, bool>>());
+                    dicResult.AddIfNotContainsKey(nameof(T), new List<Tuple<object, long, bool>>());
                     dicResult[nameof(T)].Add(new Tuple<object, long, bool>(item, insertResult, true));
                 }
 
@@ -153,7 +152,7 @@ namespace Lib.DapperORM.Repositories
             }
         }
 
-        public Dictionary<string, List<Tuple<object, long, bool>>> GetResult()
+        public IDictionary<string, List<Tuple<object, long, bool>>> GetResult()
         {
             return dicResult;
         }

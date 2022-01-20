@@ -27,14 +27,14 @@ namespace Lib.DapperORM.Repositories
             
         }
 
-        public IDapperQueryRepository Connect(string connectionString, IDbTransaction? transaction, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public IDapperQueryRepository Connect(string connectionString, IDbTransaction transaction, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
                 using (IDapperQueryRepository query = new DapperQueryRepository(connection, transaction))
                     return Connect(connection, transaction, callerFilePath, callerMemberName, callerLineNumber);
         }
 
-        public IDapperQueryRepository Connect(IDbConnection connection, IDbTransaction? transaction, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public IDapperQueryRepository Connect(IDbConnection connection, IDbTransaction transaction, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             using (IDapperQueryRepository query = new DapperQueryRepository(connection,transaction))
                 return query;
@@ -54,9 +54,9 @@ namespace Lib.DapperORM.Repositories
                 Connect(connection, transaction, queryActions, callerFilePath, callerMemberName, callerLineNumber);
             }
         }
-        public void Connect(string connectionString, IDbTransaction? transaction, Action<IDapperQueryRepository> queryActions, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public void Connect(string connectionString, IDbTransaction transaction, Action<IDapperQueryRepository> queryActions, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
             => Connect(new SqlConnection(connectionString), transaction, queryActions, callerFilePath, callerMemberName, callerLineNumber);
-        public void Connect(IDbConnection connection, IDbTransaction? transaction, Action<IDapperQueryRepository> queryActions, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public void Connect(IDbConnection connection, IDbTransaction transaction, Action<IDapperQueryRepository> queryActions, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             using(IDapperQueryRepository query = new DapperQueryRepository(connection,transaction))
             {
