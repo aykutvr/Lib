@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Lib.JSDataTable\Lib.DataTablesNet.csproj" />
+    <ProjectReference Include="..\..\src\Lib.Localization.NetCore\Lib.Localization.Web.csproj" />
   </ItemGroup>
 
 </Project>

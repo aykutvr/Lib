@@ -1,4 +1,8 @@
-﻿public static partial class Extensions
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+public static partial class Extensions
 {
 #if NET5_0_OR_GREATER
     /// <summary>

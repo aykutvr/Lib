@@ -1,4 +1,6 @@
-﻿namespace Lib.DataTablesNet.Builders
+﻿using System.Collections.Generic;
+
+namespace Lib.DataTablesNet.Builders
 {
     /// <summary>
     /// Represents an ajax object

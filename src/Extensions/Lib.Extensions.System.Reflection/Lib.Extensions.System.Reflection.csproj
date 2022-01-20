@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;netstandard2.0;netstandard2.1;net46;net461;net462;net47;net471;net472;net48</TargetFrameworks>
+	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
+	  <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="System.ComponentModel.DataAnnotations" Condition="  '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'net47' or '$(TargetFramework)' == 'net471' or '$(TargetFramework)' == 'net472' or '$(TargetFramework)' == 'net48' ">
+			<HintPath>..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.ComponentModel.DataAnnotations.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

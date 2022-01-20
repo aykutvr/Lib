@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Lib.Core.NetCore.HtmlHelpers
+namespace Lib.Core.Web.Widgets
 {
     public class LibWidgetBuilder
     {

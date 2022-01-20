@@ -5,9 +5,9 @@
 	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
 	  <DebugType>embedded</DebugType>
   </PropertyGroup>
-	
+
   <ItemGroup>
-    <ProjectReference Include="..\src\Extensions\Lib.Extensions.String\Lib.Extensions.System.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>

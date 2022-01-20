@@ -7,14 +7,12 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-	
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Lib.Extensions.BackgroundWorker\Lib.Extensions.System.ComponentModel.csproj" />
+    <ProjectReference Include="..\Lib.Extensions.Json\Lib.Extensions.Json.csproj" />
     <ProjectReference Include="..\Lib.Extensions.String\Lib.Extensions.System.csproj" />
     <ProjectReference Include="..\Lib.Extensions.System.Collections\Lib.Extensions.System.Collections.csproj" />
     <ProjectReference Include="..\Lib.Extensions.System.Data\Lib.Extensions.System.Data.csproj" />
+    <ProjectReference Include="..\Lib.Extensions.System.Reflection\Lib.Extensions.System.Reflection.csproj" />
   </ItemGroup>
 
 </Project>

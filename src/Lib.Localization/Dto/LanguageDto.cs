@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lib.Localization.Dto
 {
     [DapperORM.Attributes.Table("LibLanguage")]
-    public abstract class LanguageDto
+    public class LanguageDto
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;

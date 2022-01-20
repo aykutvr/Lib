@@ -1,5 +1,4 @@
 ﻿using Lib.Localization.Dto;
-using Lib.Localization.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +16,10 @@ namespace Lib.Localization.Repositories
             Dapper = dapper;
         }
 
-        public Language Get(int languageId, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public LanguageDto Get(int languageId, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
             => Dapper
                 .Connect(SharedSettings.ConnectionString)
-                .Get<Language>(
+                .Get<LanguageDto>(
                     "SELECT TOP 1 * FROM LibLanguage WHERE Id = @id"
                     , new { id = languageId }
                     , System.Data.CommandType.Text
@@ -29,10 +28,10 @@ namespace Lib.Localization.Repositories
                     , callerLineNumber
                 );
 
-        public Language Get(string name, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public LanguageDto Get(string name, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
             => Dapper
                 .Connect(SharedSettings.ConnectionString)
-                .Get<Language>(
+                .Get<LanguageDto>(
                     "SELECT TOP 1 * FROM LibLanguage WHERE Name = @name"
                     , new { name = name }
                     , System.Data.CommandType.Text
@@ -41,10 +40,10 @@ namespace Lib.Localization.Repositories
                     , callerLineNumber
                 );
 
-        public Language GetDefault([CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public LanguageDto GetDefault([CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
             => Dapper
                 .Connect(SharedSettings.ConnectionString)
-                .Get<Language>(
+                .Get<LanguageDto>(
                     "SELECT TOP 1 * FROM LibLanguage WHERE IsDefault = 1"
                     ,null
                     , System.Data.CommandType.Text
@@ -53,10 +52,10 @@ namespace Lib.Localization.Repositories
                     , callerLineNumber
                 );
 
-        public List<Language> List([CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<LanguageDto> List([CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
             => Dapper
                 .Connect(SharedSettings.ConnectionString)
-                .List<Language>(
+                .List<LanguageDto>(
                     "SELECT * FROM LibLanguage"
                     , null
                     , System.Data.CommandType.Text
@@ -65,10 +64,10 @@ namespace Lib.Localization.Repositories
                     , callerLineNumber
                 );
 
-        public List<Language> List(bool isActive, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public List<LanguageDto> List(bool isActive, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
             => Dapper
                 .Connect(SharedSettings.ConnectionString)
-                .List<Language>(
+                .List<LanguageDto>(
                     "SELECT * FROM LibLanguage WHERE IsActive = 1"
                     , null
                     , System.Data.CommandType.Text
@@ -77,7 +76,7 @@ namespace Lib.Localization.Repositories
                     , callerLineNumber
                 );
 
-        public Language Update(Language data, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        public LanguageDto Update(LanguageDto data, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             Dapper
                 .Connect(SharedSettings.ConnectionString)

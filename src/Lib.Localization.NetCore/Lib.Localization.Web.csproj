@@ -2,12 +2,10 @@
 
   <PropertyGroup>
 	  <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
-	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
-	  <DebugType>embedded</DebugType>
   </PropertyGroup>
-	
+
   <ItemGroup>
-    <ProjectReference Include="..\Lib.Extensions\Lib.Extensions.csproj" />
+    <ProjectReference Include="..\Lib.Core.NetCore\Lib.Core.Web.csproj" />
   </ItemGroup>
 
 </Project>

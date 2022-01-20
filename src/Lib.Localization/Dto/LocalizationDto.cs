@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Lib.Localization.Dto
 {
     [DapperORM.Attributes.Table("LibLocalization")]
-    public abstract class LocalizationDto
+    public class LocalizationDto
     {
         [Key]
         public int Id { get; set; } = 0;
