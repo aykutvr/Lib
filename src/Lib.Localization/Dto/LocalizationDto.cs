@@ -16,5 +16,8 @@ namespace Lib.Localization.Dto
         public string KeyString { get; set; } = string.Empty;
         public string ValueString { get; set; } = string.Empty;
         public string SourcePath { get; set; } = string.Empty;
+
+        [Dapper.Contrib.Extensions.Write(false)]
+        public LanguageDto Language { get; set; } = new LanguageDto();
     }
 }

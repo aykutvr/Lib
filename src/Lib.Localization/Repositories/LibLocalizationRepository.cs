@@ -1,4 +1,5 @@
-﻿using Lib.Localization.Dto;
+﻿using Lib.Localization.Builders;
+using Lib.Localization.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,16 +29,10 @@ namespace Lib.Localization.Repositories
         }
 
         public LocalizationDto Get(int id, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
-            => Dapper
-                .Connect(SharedSettings.ConnectionString)
-                .Get<LocalizationDto>(
-                    "SELECT TOP 1 * FROM LibLocalization WHERE Id = @id"
-                    , new { id = id }
-                    , System.Data.CommandType.Text
-                    , callerFilePath
-                    , callerMemberName
-                    , callerLineNumber
-                );
+            => List(config =>
+            {
+                config.SetId(id);
+            }).FirstOrDefault();
 
         public LocalizationDto Get(
                                         string key
@@ -46,16 +41,11 @@ namespace Lib.Localization.Repositories
                                         , [CallerMemberName] string callerMemberName = ""
                                         , [CallerLineNumber] int callerLineNumber = -1
                                        )
-            => Dapper
-                .Connect(SharedSettings.ConnectionString)
-                .Get<LocalizationDto>(
-                    "SELECT TOP 1 * FROM LibLocalization LCL INNER JOIN LibLanguage LANG ON LANG.Id = LCL.LanguageId WHERE LCL.KeyString = @keyString AND LANG.Name = @langName"
-                    , new { keyString = key, langName = langName}
-                    , System.Data.CommandType.Text
-                    , callerFilePath
-                    , callerMemberName
-                    , callerLineNumber
-                );
+            => List(config =>
+            {
+                config.SetKey(key);
+                config.SetLanguage(langName);
+            }).FirstOrDefault();
 
         public LocalizationDto Insert(LocalizationDto localization, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
@@ -64,19 +54,13 @@ namespace Lib.Localization.Repositories
                .Insert<LocalizationDto>(localization, callerFilePath, callerMemberName, callerLineNumber);
         }
 
-        
+
 
         public List<LocalizationDto> List(string lang = "", [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
-        => Dapper
-                .Connect(SharedSettings.ConnectionString)
-                .List<LocalizationDto>(
-                    "SELECT FROM LibLocalization LCL INNER JOIN LibLanguage LANG ON LANG.Id = LCL.LanguageId WHERE LANG.Name = @langName OR @langName = ''"
-                    , new { langName = lang }
-                    , System.Data.CommandType.Text
-                    , callerFilePath
-                    , callerMemberName
-                    , callerLineNumber
-                );
+            => List(config =>
+                {
+                    config.SetLanguage(lang);
+                });
 
         public LocalizationDto Update(LocalizationDto localization, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
@@ -89,6 +73,55 @@ namespace Lib.Localization.Repositories
                    , callerLineNumber
                );
             return localization;
+        }
+
+        public void Dispose()
+        {
+
+        }
+
+        public List<LocalizationDto> List(Action<LocalizationListFilterBuilder> config, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
+        {
+            LocalizationListFilterBuilder builder = new LocalizationListFilterBuilder();
+            config.Invoke(builder);
+            return Dapper
+                .Connect(SharedSettings.ConnectionString)
+                .List<LocalizationDto,LanguageDto,LocalizationDto>(queryCfg =>
+                    {
+                        string query = "SELECT LCL.*, '' SPLIT, LANG.* FROM LibLocalization LCL INNER JOIN LibLanguage LANG ON LANG.Id = LCL.LanguageId WHERE 1=1 ";
+                        if (builder._filter.Id.Any())
+                        {
+                            query += " AND LCL.Id IN @lclId";
+                            queryCfg.AddParameter(new { lclId = builder._filter.Id });
+                        }
+
+                        if (builder._filter.Key.Any())
+                        {
+                            query += " AND LCL.KeyString IN @lclKey";
+                            queryCfg.AddParameter(new { lclKey = builder._filter.Key });
+                        }
+
+                        if (builder._filter.Lang.Any())
+                        {
+                            query += " AND LANG.Name IN @lclLang";
+                            queryCfg.AddParameter(new { lclLang = builder._filter.Lang });
+                        }
+
+                        queryCfg.SetQuery(query);
+                    }
+                    ,(LOCALIZATION,LANGUAGE) =>
+                    {
+                        if (LANGUAGE != null)
+                            LOCALIZATION.Language = LANGUAGE;
+
+                        return LOCALIZATION;
+                    }
+                    ,"SPLIT"
+                    , callerFilePath
+                    , callerMemberName
+                    , callerLineNumber
+                );
+
         }
     }
 }

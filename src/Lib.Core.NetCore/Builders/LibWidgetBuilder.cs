@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lib.Core.Web.Widgets
+namespace Lib.Core.Web.Builders
 {
     public class LibWidgetBuilder
     {

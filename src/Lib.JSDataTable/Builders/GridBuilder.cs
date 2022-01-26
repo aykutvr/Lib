@@ -440,12 +440,21 @@ namespace Lib.DataTablesNet.Builders
                 ColumnsFactory = new ColumnsFactory<T>();
                 foreach (var item in typeof(T).GetProperties())
                 {
+#if !NETSTANDARD
                     ColumnsFactory
                         .Columns
                         .Add(new GridColumnsBuilder<T>()
                                     .CellType(CellType.td)
                                     .Data(item.Name)
                                     .Title(item.GetDisplayName()));
+#else
+                    ColumnsFactory
+                        .Columns
+                        .Add(new GridColumnsBuilder<T>()
+                                    .CellType(CellType.td)
+                                    .Data(item.Name)
+                                    .Title(item.Name));
+#endif
                 }
             }
 

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lib.Core.Web
 {
-    internal class SharedSettings : Lib.Core.SharedSettings
+    public class SharedSettings : Lib.Core.SharedSettings
     {
+        public static IServiceProvider ServiceProvider { get; set; }
     }
 }

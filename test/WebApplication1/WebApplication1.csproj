@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Lib.DapperORM.NetCore\Lib.DapperORM.Web.csproj" />
     <ProjectReference Include="..\..\src\Lib.JSDataTable\Lib.DataTablesNet.csproj" />
     <ProjectReference Include="..\..\src\Lib.Localization.NetCore\Lib.Localization.Web.csproj" />
   </ItemGroup>

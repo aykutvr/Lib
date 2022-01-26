@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Localization.NetCore
+namespace Lib.Localization.Web
 {
-    internal class SharedSettings : Lib.Core.SharedSettings
+    public class SharedSettings : Lib.Localization.SharedSettings
     {
+        
     }
 }

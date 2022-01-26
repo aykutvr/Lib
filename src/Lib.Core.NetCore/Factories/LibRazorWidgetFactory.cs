@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿using Lib.Core.Web.Builders;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lib.Core.Web.Widgets
+namespace Lib.Core.Web.Factories
 {
-    public class LibWidgetFactory : LibWidgetBuilder
+    public class LibRazorWidgetFactory : LibWidgetBuilder
     {
-        public LibWidgetFactory(IHtmlHelper html) : base(html)
+        public LibRazorWidgetFactory(IHtmlHelper html) : base(html)
         {
         }
 

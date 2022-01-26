@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 public static partial class LibWidgetFactory
 {
-    public static Lib.DataTablesNet.Builders.GridBuilder<T> DataTable<T>(this Lib.Core.Web.Widgets.LibWidgetFactory @this) where T : class => new Lib.DataTablesNet.Builders.GridBuilder<T>();
+    public static Lib.DataTablesNet.Builders.GridBuilder<T> DataTable<T>(this Lib.Core.Web.Factories.LibRazorWidgetFactory @this) where T : class => new Lib.DataTablesNet.Builders.GridBuilder<T>();
 }

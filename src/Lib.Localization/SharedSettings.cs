@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lib.Localization
 {
-    internal class SharedSettings : Lib.Core.SharedSettings
+    public class SharedSettings
     {
         public static string ConnectionString { get; set; } = string.Empty;
+        public static Dto.LanguageDto DefaultLanguage { get; set; } = new Dto.LanguageDto();
     }
 }

@@ -10,4 +10,10 @@ using System.Threading.Tasks;
         {
             return new Lib.DapperORM.Repositories.DapperConnectRepository();
         }
+
+        public static string GetSQLText(this Lib.DapperORM.SQLRelationshipActions @this)
+        {
+            var attr = @this.GetType().GetField(@this.ToString()).GetCustomAttributes(typeof(Lib.DapperORM.Attributes.RelastionshipRulesAttribute), false).FirstOrDefault() as Lib.DapperORM.Attributes.RelastionshipRulesAttribute;
+            return attr.RelastionshipRuleText;
+        }
     }

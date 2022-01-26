@@ -30,5 +30,65 @@ namespace WebApplication1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Shop()
+        {
+            this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.UserDto>();
+            this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.RoleDto>();
+            this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.UsersRolesDto>();
+            this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.CategoryDto>();
+            this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.ProductDto>();
+
+            return Ok();
+        }
+
+        public IActionResult Test()
+        {
+            #region Dapper Tests
+
+            
+            
+            var createOrAlterTable = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Models.TestDto>();
+            var createOrAlterTable2 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Models.TestDetailDto>();
+            var step01 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert().AddData<Models.TestDto>(new TestDto { Description = "Description 1", Name = "Step 1" }).GetResult();
+            var step02 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert(config =>
+            {
+                config.AddData<Models.TestDto>(new TestDto { Description = "Description 2.1", Name = "Step 2.1" });
+                config.AddData<Models.TestDto>(new List<Models.TestDto> 
+                { 
+                    new TestDto { Name = "Step 2.2.1", Description = "Description 2.2.1" },
+                    new TestDto { Name = "Step 2.2.2", Description = "Description 2.2.2" },
+                    new TestDto { Name = "Step 2.2.3", Description = "Description 2.2.3" } 
+                });
+            });
+            var step03 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert<Models.TestDto>(new TestDto { Description = "Description 3", Name = "Step 3" });
+            var step04 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).DataTable("SELECT * FROM Test");
+            var step05 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Execute("INSERT INTO Test (Name,Description) VALUES ('Step 5','Description 5')");
+            var step06 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).ExecuteScalar("SELECT COUNT(*) FROM Test");
+            var step07 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).ExecuteScalar<int>("SELECT COUNT(*) FROM Test");
+            var step08 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Get<Models.TestDto>(step05);
+            var step09 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Get<Models.TestDto>("SELECT * FROM Test WHERE Id = @id", new { id = step05 });
+            var step10 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).ListAll<Models.TestDto>("SELECT * FROM Test");
+            var step11 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).List<Models.TestDto>(builder =>
+            {
+                builder.SetQuery("SELECT * FROM Test WHERE Id = @id");
+                builder.AddParameter(new { id = step05 });
+            });
+            var step12 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).List<Models.TestDto>("SELECT * FROM Test WHERE Id = @id", builder =>
+            {
+                builder.AddParameter(new { id = step05 });
+            });
+            var step13 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Multiple("SELECT * FROM Test SELECT COUNT(*) FROM Test")
+                            .Read<Models.TestDto>(out List<Models.TestDto> outList)
+                            .ReadFirst<int>(out int count);
+            step03.Description = step03.Description + " Updated";
+            var step14 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Update<Models.TestDto>(step03);
+            var step15 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Delete<Models.TestDto>(step05);
+            var step16 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Delete<Models.TestDto>(step03);
+            var step17 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).DeleteAll<Models.TestDto>();
+
+            #endregion Dapper Tests
+            return View();
+        }
     }
 }
