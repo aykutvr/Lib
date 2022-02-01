@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System", "src\Extensions\Lib.Extensions.System\Lib.Extensions.System.csproj", "{50399CD1-27A5-4D25-A2F2-408774E2C07C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.ComponentModel", "Lib.Extensions.BackgroundWorker\Lib.Extensions.System.ComponentModel.csproj", "{172C1552-4108-4D28-85F5-B70692467FA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.ComponentModel", "src\Extensions\Lib.Extensions.ComponentModel\Lib.Extensions.System.ComponentModel.csproj", "{172C1552-4108-4D28-85F5-B70692467FA9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Data", "src\Extensions\Lib.Extensions.System.Data\Lib.Extensions.System.Data.csproj", "{B36BB774-78DF-40B9-9926-81757796673B}"
 EndProject

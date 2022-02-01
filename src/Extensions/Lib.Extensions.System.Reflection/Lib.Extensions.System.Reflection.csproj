@@ -8,6 +8,15 @@
 	  <FileVersion>22.2.1.0</FileVersion>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Version>22.2.1.0</Version>
+	  <PackageId>Lib.Extensions.System.Reflection</PackageId>
+	  <Authors>Aykut Vuruşkaner</Authors>
+	  <Company>Aykut Vuruşkaner</Company>
+	  <Product>Lib.Extensions.System.Reflection</Product>
+	  <Description>Extension library for the System.Reflection objects and types.</Description>
+	  <Copyright>Copyright 2021</Copyright>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.System.Reflection</RepositoryUrl>
+	  <PackageTags>.net extension library system.reflection</PackageTags>
   </PropertyGroup>
 
 	<ItemGroup>

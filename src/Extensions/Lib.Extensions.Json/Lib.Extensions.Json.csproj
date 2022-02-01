@@ -14,7 +14,7 @@
 	  <Product>Lib.Extensions.Json</Product>
 	  <Description>Extension library for the JSON operations. </Description>
 	  <Copyright>Copyright 2021</Copyright>
-	  <PackageProjectUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.Json</PackageProjectUrl>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
 	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.Json</RepositoryUrl>
 	  <PackageTags>.net json extension newtonsoft</PackageTags>
   </PropertyGroup>

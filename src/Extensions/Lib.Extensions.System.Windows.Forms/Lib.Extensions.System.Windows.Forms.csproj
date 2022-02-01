@@ -8,6 +8,15 @@
 	  <AssemblyVersion>22.2.1.0</AssemblyVersion>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Version>22.2.1.0</Version>
+	  <PackageId>Lib.Extensions.System.Windows.Forms</PackageId>
+	  <Authors>Aykut Vuruşkaner</Authors>
+	  <Company>Aykut Vuruşkaner</Company>
+	  <Product>Lib.Extensions.System.Windows.Forms</Product>
+	  <Description>Extension library for the System.Windows.Forms objects and types.</Description>
+	  <Copyright>Copyright 2019</Copyright>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.System.Windows.Forms</RepositoryUrl>
+	  <PackageTags>.net extension library system.windows.forms</PackageTags>
   </PropertyGroup>
 	
   <ItemGroup>

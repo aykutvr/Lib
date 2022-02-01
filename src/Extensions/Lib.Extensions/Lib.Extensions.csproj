@@ -15,7 +15,7 @@
 	  <Company>Aykut Vuruşkaner</Company>
 	  <Product>Lib.Extensions</Product>
 	  <Copyright>Copyright 2021</Copyright>
-	  <PackageProjectUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions</PackageProjectUrl>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
 	  <PackageTags>.net extensions library</PackageTags>
   </PropertyGroup>
 	

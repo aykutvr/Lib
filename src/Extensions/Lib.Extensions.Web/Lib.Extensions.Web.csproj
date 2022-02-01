@@ -8,6 +8,15 @@
 	  <FileVersion>22.2.1.0</FileVersion>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Version>22.2.1.0</Version>
+	  <PackageId>Lib.Extensions.Web</PackageId>
+	  <Authors>Aykut Vuruşkaner</Authors>
+	  <Company>Aykut Vuruşkaner</Company>
+	  <Product>Lib.Extensions.Web</Product>
+	  <Description>Extension container library for the .net core web applications.</Description>
+	  <Copyright>Copyright 2021</Copyright>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.Web</RepositoryUrl>
+	  <PackageTags>.net core extension library web application</PackageTags>
   </PropertyGroup>
 	
   <ItemGroup>

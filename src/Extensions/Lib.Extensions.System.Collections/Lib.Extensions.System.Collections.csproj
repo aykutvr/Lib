@@ -8,6 +8,15 @@
 	  <FileVersion>22.2.1.0</FileVersion>
 	  <Version>22.2.1.0</Version>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageId>Lib.Extensions.System.Collections</PackageId>
+	  <Authors>Aykut Vuruşkaner</Authors>
+	  <Company>Aykut Vuruşkaner</Company>
+	  <Product>Lib.Extensions.System.Collections</Product>
+	  <Description>Extension library for the System.Collections objects and types</Description>
+	  <Copyright>Copyright 2021</Copyright>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.System.Collections</RepositoryUrl>
+	  <PackageTags>.net extension library system.collections</PackageTags>
   </PropertyGroup>
 	
   <ItemGroup>
