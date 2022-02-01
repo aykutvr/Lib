@@ -30,6 +30,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.ComponentModel", "src\Extensions\Lib.Extensions.ComponentModel\Lib.Extensions.System.ComponentModel.csproj", "{172C1552-4108-4D28-85F5-B70692467FA9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Data", "src\Extensions\Lib.Extensions.System.Data\Lib.Extensions.System.Data.csproj", "{B36BB774-78DF-40B9-9926-81757796673B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{50399CD1-27A5-4D25-A2F2-408774E2C07C} = {50399CD1-27A5-4D25-A2F2-408774E2C07C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Windows.Forms", "src\Extensions\Lib.Extensions.System.Windows.Forms\Lib.Extensions.System.Windows.Forms.csproj", "{7E74292E-76FF-4DF6-89A9-1AF616066336}"
 EndProject
@@ -59,7 +62,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.Json", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Extensions.System.Reflection", "src\Extensions\Lib.Extensions.System.Reflection\Lib.Extensions.System.Reflection.csproj", "{530C78C0-231C-4B74-9250-FD3D0284B03C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Test.Web.net60", "test\Lib.Test.Web.net60\Lib.Test.Web.net60.csproj", "{1D9FD1EA-9063-41CA-A186-724CFB95D6FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Test.Web.net60", "test\Lib.Test.Web.net60\Lib.Test.Web.net60.csproj", "{1D9FD1EA-9063-41CA-A186-724CFB95D6FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,14 +4,20 @@
 	  <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;netstandard2.0;netstandard2.1;net46;net461;net462;net47;net471;net472;net48</TargetFrameworks>
 	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
 	  <DebugType>embedded</DebugType>
-	  <AssemblyVersion>22.2.1.0</AssemblyVersion>
-	  <FileVersion>22.2.1.0</FileVersion>
-	  <Version>22.2.1.0</Version>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <AssemblyVersion>22.2.2.0</AssemblyVersion>
+	  <FileVersion>22.2.2.0</FileVersion>
+	  <Version>22.2.2.0</Version>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <PackageProjectUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.ComponentModel</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions.ComponentModel</RepositoryUrl>
+	  <PackageId>Lib.Extensions.System.ComponentModel</PackageId>
+	  <Authors>Aykut Vuruşkaner</Authors>
+	  <Company>Aykut Vuruşkaner</Company>
+	  <Product>Lib.Extensions.System.ComponentModel</Product>
+	  <Description>Extension library for System.ComponentModel objects and types.</Description>
+	  <Copyright>Copyright 2021</Copyright>
+	  <PackageTags>.net extension library</PackageTags>
   </PropertyGroup>
 	
-  <ItemGroup>
-    <ProjectReference Include="..\src\Extensions\Lib.Extensions.String\Lib.Extensions.System.csproj" />
-  </ItemGroup>
 
 </Project>

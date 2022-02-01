@@ -4,10 +4,10 @@
 	  <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;netstandard2.0;netstandard2.1;net46;net461;net462;net47;net471;net472;net48</TargetFrameworks>
 	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
 	  <DebugType>embedded</DebugType>
-	  <AssemblyVersion>22.2.1.0</AssemblyVersion>
-	  <FileVersion>22.2.1.0</FileVersion>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <Version>22.2.1.0</Version>
+	  <AssemblyVersion>22.2.2.0</AssemblyVersion>
+	  <FileVersion>22.2.2.0</FileVersion>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <Version>22.2.2.0</Version>
 	  <PackageId>Lib.Extensions.Json</PackageId>
 	  <Authors>Aykut Vuruşkaner</Authors>
 	  <Company>Aykut Vuruşkaner</Company>

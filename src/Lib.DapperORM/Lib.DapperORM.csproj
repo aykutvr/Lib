@@ -8,10 +8,10 @@
     <Authors>Aykut Vuruskaner</Authors>
     <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Lib.Dapper</RepositoryUrl>
     <PackageProjectUrl>https://github.com/aykutvr/Lib/tree/master/src/Lib.Dapper</PackageProjectUrl>
-    <AssemblyVersion>22.2.1.0</AssemblyVersion>
-    <FileVersion>22.2.1.0</FileVersion>
+    <AssemblyVersion>22.2.2.0</AssemblyVersion>
+    <FileVersion>22.2.2.0</FileVersion>
     <Description>Extended using for Dapper.</Description>
-    <Version>22.2.1.0</Version>
+    <Version>22.2.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

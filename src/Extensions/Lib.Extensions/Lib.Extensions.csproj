@@ -4,12 +4,12 @@
 	  <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net5.0;net6.0;netstandard2.0;netstandard2.1;net46;net461;net462;net47;net471;net472;net48</TargetFrameworks>
 	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
 	  <DebugType>embedded</DebugType>
-	  <AssemblyVersion>22.2.1.0</AssemblyVersion>
-	  <FileVersion>22.2.1.0</FileVersion>
+	  <AssemblyVersion>22.2.2.0</AssemblyVersion>
+	  <FileVersion>22.2.2.0</FileVersion>
 	  <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Extensions/Lib.Extensions</RepositoryUrl>
 	  <Description>Extensions container library for Lib.Extensions.* libraries</Description>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <Version>22.2.1.0</Version>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <Version>22.2.2.0</Version>
 	  <PackageId>Lib.Extensions</PackageId>
 	  <Authors>Aykut Vuruşkaner</Authors>
 	  <Company>Aykut Vuruşkaner</Company>
@@ -20,9 +20,9 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Lib.Extensions.BackgroundWorker\Lib.Extensions.System.ComponentModel.csproj" />
+    <ProjectReference Include="..\Lib.Extensions.ComponentModel\Lib.Extensions.System.ComponentModel.csproj" />
     <ProjectReference Include="..\Lib.Extensions.Json\Lib.Extensions.Json.csproj" />
-    <ProjectReference Include="..\Lib.Extensions.String\Lib.Extensions.System.csproj" />
+    <ProjectReference Include="..\Lib.Extensions.System\Lib.Extensions.System.csproj" />
     <ProjectReference Include="..\Lib.Extensions.System.Collections\Lib.Extensions.System.Collections.csproj" />
     <ProjectReference Include="..\Lib.Extensions.System.Data\Lib.Extensions.System.Data.csproj" />
     <ProjectReference Include="..\Lib.Extensions.System.Reflection\Lib.Extensions.System.Reflection.csproj" />
