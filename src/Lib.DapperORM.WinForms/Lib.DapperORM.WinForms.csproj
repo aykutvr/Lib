@@ -9,7 +9,7 @@
 	
   <ItemGroup>
     <ProjectReference Include="..\Lib.Core.WinForms\Lib.Core.WinForms.csproj" />
-    <ProjectReference Include="..\Lib.Dapper\Lib.DapperORM.csproj" />
+    <ProjectReference Include="..\Lib.DapperORM\Lib.DapperORM.csproj" />
   </ItemGroup>
 	
   <ItemGroup>

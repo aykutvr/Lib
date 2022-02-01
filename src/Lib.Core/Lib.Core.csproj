@@ -6,6 +6,10 @@
     <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
     <DebugType>embedded</DebugType>
     <Version>22.2.2.0</Version>
+    <PackageId>Lib.Core</PackageId>
+    <Authors>Aykut Vuruşkaner</Authors>
+    <Company>Aykut Vuruşkaner</Company>
+    <Product>Lib.Core</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
