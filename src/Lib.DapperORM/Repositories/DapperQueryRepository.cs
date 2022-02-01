@@ -404,6 +404,7 @@ namespace Lib.DapperORM.Repositories
             }
             public string Schema { get; set; } = "dbo";
             public string TableName { get; set; } = string.Empty;
+            public bool TableExists { get; set; } = false;
             public List<SQLColumnDefinition> Columns { get; set; } = new List<SQLColumnDefinition>();
 
         }
@@ -528,6 +529,7 @@ namespace Lib.DapperORM.Repositories
             public bool PrimaryKey { get; set; } = false;
             public bool IsEnum { get; set; } = false;
             public SQLRelationalColumnDefinition RelationalField { get; set; } = null;
+            public bool ColumnExists { get; set; } = false;
         }
         private class SQLColumnIdentityDefinition
         {
@@ -559,25 +561,34 @@ namespace Lib.DapperORM.Repositories
 
             SQLTableDefinition tableDefinition = new SQLTableDefinition(typeof(T));
 
+            tableDefinition.TableExists = Connection.ExecuteScalar<bool>($@"
+                SELECT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES 
+                WHERE TABLE_SCHEMA = @schemaName AND  TABLE_NAME = @tableName)"
+                , new
+                {
+                    schemaName = tableDefinition.Schema,
+                    tableName = tableDefinition.TableName
+                });
 
+            StringBuilder queryBuilder = new StringBuilder();
 
-            
-
-            string createScript = $@"
+            if (!tableDefinition.TableExists)
+            {
+                string createScript = $@"
                 CREATE TABLE
                     [{Connection.Database}].[{tableDefinition.Schema}].[{tableDefinition.TableName}]
                 (
                     {tableDefinition.Columns.Select(column => String.Format(@"[{0}] {1}{2} {3} {4} {5}", new string[]
                                 {
-                                    (column.RelationalField == null ? column.ColumnName : column.RelationalField.RelationalColumnName),
+                                    (column.RelationalField == null ? column.ColumnName : column.ColumnName + column.RelationalField.RelationalColumnName),
                                     (column.RelationalField == null ? column.SpecifiedDbType.ToString() : column.RelationalField.RelationalKeyColumn.SpecifiedDbType.ToString()),
                                     (column.RelationalField == null ? (column.StringLength.HasValue ? "(" + column.StringLength.Value.ToString() + ")" : "") : ((column.RelationalField.RelationalKeyColumn.StringLength.HasValue ? "(" + column.RelationalField.RelationalKeyColumn.StringLength.Value.ToString() + ")" : ""))),
                                     (column.RelationalField == null ? (column.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{column.MaskedWith}')" : "") : (column.RelationalField.RelationalKeyColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{column.RelationalField.RelationalKeyColumn.MaskedWith}')" : "")),
                                     (column.RelationalField == null ? (column.Identity.Enabled ? $"IDENTITY({column.Identity.Seed},{column.Identity.Increment})" : "") : ""),
-                                    (column.IsNullable ? "NULL" : "NOT NULL")
+                                    (column.IsNullable || (column.RelationalField != null && (column.RelationalField.RelationProperties.DeleteRule == SQLRelationshipActions.SetNull || column.RelationalField.RelationProperties.UpdateRule == SQLRelationshipActions.SetNull)) ? "NULL" : "NOT NULL")
                                 })).StringJoin("," + Environment.NewLine)}
-                    {tableDefinition.Columns.Where(w=> w.PrimaryKey).Take(1).Select(s=> $",PRIMARY KEY ( [{s.ColumnName}] ASC)").FirstOrDefault()}
-                    {tableDefinition.Columns.Where(w=> w.RelationalField != null).Select(s=> {
+                    {tableDefinition.Columns.Where(w => w.PrimaryKey).Take(1).Select(s => $",PRIMARY KEY ( [{s.ColumnName}] ASC)").FirstOrDefault()}
+                    {tableDefinition.Columns.Where(w => w.RelationalField != null).Select(s => {
                                     return $@"
                                             ,CONSTRAINT FK_{tableDefinition.TableName}_{s.RelationalField.RelationalColumnName} 
                                              FOREIGN KEY ([{s.RelationalField.RelationalColumnName}]) 
@@ -587,8 +598,67 @@ namespace Lib.DapperORM.Repositories
                                 }).StringJoin(Environment.NewLine)}
                 )
                 ";
+                queryBuilder.AppendLine(createScript);
+                tableDefinition.TableExists = true;
+            }
+            else
+            {
+                List<string> oldColumnNames = Connection.Query<string>("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = @schemaName AND TABLE_NAME = @tableName", new { schemaName = tableDefinition.Schema, tableName = tableDefinition.TableName }).ToList();
+                tableDefinition.Columns.ForEach(column =>
+                {
+                    column.ColumnExists = oldColumnNames.Any(a => a == column.ColumnName);
+                    var dbColumn = column.RelationalField == null ? column : column.RelationalField.RelationalKeyColumn;
+                    dbColumn.ColumnName = column.RelationalField == null ? column.ColumnName : column.ColumnName + column.RelationalField.RelationalKeyColumn.ColumnName;
+                    if (column.ColumnExists)
+                    {
+                        dbColumn.IsNullable = column.IsNullable
+                                              || (
+                                                    column.RelationalField != null
+                                                    && (
+                                                               column.RelationalField.RelationProperties.DeleteRule == SQLRelationshipActions.SetNull
+                                                            || column.RelationalField.RelationProperties.UpdateRule == SQLRelationshipActions.SetNull
+                                                       )
+                                                 );
 
-            Connection.Execute(createScript);
+
+                        queryBuilder.AppendLine($@"
+                                ALTER TABLE [{Connection.Database}].[{tableDefinition.Schema}].[{tableDefinition.TableName}]
+                                ALTER COLUMN [{dbColumn.ColumnName}]
+                                {dbColumn.SpecifiedDbType.ToString()}{(dbColumn.StringLength.HasValue ? $"({dbColumn.StringLength.Value.ToString()})" : "")}
+                                {(dbColumn.CollateType == SQLCollateTypes.Default ? "" : $"COLLATE {dbColumn.CollateType.ToString()}")}
+                                {(dbColumn.IsNullable ? "NULL" : "NOT NULL")}
+                                {(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")}
+                                
+                                ");
+                    }
+                    else
+                    {
+                        queryBuilder.AppendLine($@"
+                                        ALTER TABLE [{Connection.Database}].[{tableDefinition.Schema}].[{tableDefinition.TableName}]
+                                        ADD COLUMN  [{dbColumn.ColumnName}]
+                                        {dbColumn.SpecifiedDbType.ToString()}{(dbColumn.StringLength.HasValue ? $"({dbColumn.StringLength.Value.ToString()})" : "")}
+                                        {(dbColumn.CollateType == SQLCollateTypes.Default ? "" : $"COLLATE {dbColumn.CollateType.ToString()}")}
+                                        {(dbColumn.IsNullable ? "NULL" : "NOT NULL")}
+                                        {(dbColumn.RelationalField == null ? (dbColumn.Identity.Enabled ? $"IDENTITY({dbColumn.Identity.Seed},{dbColumn.Identity.Increment})" : "") : "")}
+                                        {(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")}
+                                        {(dbColumn.PrimaryKey ? $" CONSTRAINT {tableDefinition.TableName}_{dbColumn.ColumnName}_PK PRIMARY KEY ( [{dbColumn.ColumnName}] ASC)" : "")}
+                                        {(column.RelationalField == null ? "" : $@"
+                                            ,CONSTRAINT FK_{tableDefinition.TableName}_{column.RelationalField.RelationalColumnName} 
+                                             FOREIGN KEY ([{column.RelationalField.RelationalColumnName}]) 
+                                             REFERENCES [{column.RelationalField.TableDefinition.Schema}].[{column.RelationalField.TableDefinition.TableName}]([{column.RelationalField.RelationalKeyColumn.ColumnName}]) 
+                                             ON DELETE {column.RelationalField.RelationProperties.DeleteRule.GetSQLText()} 
+                                             ON UPDATE {column.RelationalField.RelationProperties.UpdateRule.GetSQLText()}
+                        ")}
+                ");
+
+                    }
+
+
+
+                });
+            }
+
+            Connection.Execute(queryBuilder.ToString());
 
             return true;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>netLib</id>
+    <version>1.0.0</version>
+    <authors>AYKUT.VURUSKANER</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/aykutvr/Lib</projectUrl>
+    <description>Package description</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>lib extensions .net</tags>
+  </metadata>
+</package>

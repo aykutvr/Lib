@@ -5,8 +5,15 @@
 	  <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
 	  <DebugType>embedded</DebugType>
 	  <Authors>Aykut Vuruşkaner</Authors>
-	  <Product>Lib</Product>
+	  <Product>Lib.Extensions.System</Product>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <AssemblyVersion>22.2.1.0</AssemblyVersion>
+	  <FileVersion>22.2.1.0</FileVersion>
+	  <Version>22.2.1.0</Version>
+	  <PackageId>Lib.Extensions.System</PackageId>
+	  <Company>Aykut Vuruşkaner</Company>
+	  <Description>Extension library for the general System objects and types.</Description>
+	  <Copyright>Copyright 2021</Copyright>
   </PropertyGroup>
 
 </Project>
