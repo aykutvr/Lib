@@ -11,7 +11,10 @@ namespace Lib.DapperORM.Builders
     {
         internal DynamicParameters dynamicParameters { get; set; }
 
-
+        public QueryParameterBuilder()
+        {
+            ClearParameters();
+        }
         public void AddParameter(string name, object value = null, DbType? dbType = null, ParameterDirection? direction = null, int? size = null, byte? precision = null, byte? scale = null)
         {
             dynamicParameters.Add(name, value, dbType, direction, size, precision, scale);
@@ -48,5 +51,16 @@ namespace Lib.DapperORM.Builders
         {
             dynamicParameters = null;
         }
+        public void ClearParameters()
+        {
+            dynamicParameters = new DynamicParameters();
+        }
+        protected void Build()
+        {
+            foreach (var item in this.GetType().GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly))
+                if(item.GetValue(this) != null)
+                    AddParameter(item.Name,item.GetValue(this));
+        }
+        
     }
 }

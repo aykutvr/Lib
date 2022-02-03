@@ -11,6 +11,10 @@ namespace Lib.DapperORM.Repositories
 {
     public class DapperConnectRepository : IDapperConnectRepository
     {
+        public IDapperQueryRepository Connect()
+        {
+            return Connect(connectionString: SharedSettings.ConnectionString, transaction: null);
+        }
         public IDapperQueryRepository Connect(string connectionString, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             return Connect(connectionString : connectionString,transaction: null, callerFilePath, callerMemberName, callerLineNumber);

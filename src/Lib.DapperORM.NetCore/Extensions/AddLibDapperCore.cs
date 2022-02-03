@@ -19,4 +19,6 @@ public static partial class Extensions
         config.Invoke(new Lib.DapperORM.Models.DapperORMConfigurationSettings());
         return services;
     }
+
+
 }
