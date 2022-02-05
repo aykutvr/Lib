@@ -15,6 +15,10 @@ namespace Lib.DapperORM.Models
         {
             return new Repositories.DapperConnectRepository().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<T>();
         }
+        public Repositories.IDapperQueryRepository Query()
+        {
+            return new Repositories.DapperConnectRepository().Connect(SharedSettings.ConnectionString);
+        }
 
        
     }
