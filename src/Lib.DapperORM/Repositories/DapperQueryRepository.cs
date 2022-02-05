@@ -562,8 +562,8 @@ namespace Lib.DapperORM.Repositories
             SQLTableDefinition tableDefinition = new SQLTableDefinition(typeof(T));
 
             tableDefinition.TableExists = Connection.ExecuteScalar<bool>($@"
-                SELECT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES 
-                WHERE TABLE_SCHEMA = @schemaName AND  TABLE_NAME = @tableName)"
+                SELECT EXISTS((SELECT * FROM INFORMATION_SCHEMA.TABLES 
+                WHERE TABLE_SCHEMA = @schemaName AND  TABLE_NAME = @tableName))"
                 , new
                 {
                     schemaName = tableDefinition.Schema,

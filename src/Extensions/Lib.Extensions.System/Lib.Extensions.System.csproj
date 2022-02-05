@@ -7,9 +7,9 @@
 	  <Authors>Aykut Vuruşkaner</Authors>
 	  <Product>Lib.Extensions.System</Product>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-	  <AssemblyVersion>22.2.4.0</AssemblyVersion>
-	  <FileVersion>22.2.4.0</FileVersion>
-	  <Version>22.2.4.0</Version>
+	  <AssemblyVersion>22.2.5.0</AssemblyVersion>
+	  <FileVersion>22.2.5.0</FileVersion>
+	  <Version>22.2.5.0</Version>
 	  <PackageId>Lib.Extensions.System</PackageId>
 	  <Company>Aykut Vuruşkaner</Company>
 	  <Description>Extension library for the general System objects and types.</Description>
