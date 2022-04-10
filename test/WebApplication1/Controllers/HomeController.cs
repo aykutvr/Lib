@@ -37,6 +37,8 @@ namespace WebApplication1.Controllers
 
         public IActionResult Shop()
         {
+            
+            
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.UserDto>();
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.RoleDto>();
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.UsersRolesDto>();

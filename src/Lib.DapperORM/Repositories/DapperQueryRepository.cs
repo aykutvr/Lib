@@ -512,6 +512,70 @@ namespace Lib.DapperORM.Repositories
                         Identity.Seed = attr.As<DapperORM.Attributes.IdentityAttribute>().Seed;
                         Identity.Increment = attr.As<DapperORM.Attributes.IdentityAttribute>().Increment;
                     }
+                    else if (attr.IsTypeOf(typeof(System.ComponentModel.DefaultValueAttribute)))
+                    {
+                        object value = attr.As<System.ComponentModel.DefaultValueAttribute>().Value;
+                        switch (attr.As<System.ComponentModel.DefaultValueAttribute>().Value.GetTypeCode())
+                        {
+                            case TypeCode.Boolean:
+                                DefaultValue = string.Format("{0}", Convert.ToByte((bool)value)); 
+                                break;
+                            case TypeCode.Byte:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Char:
+                                DefaultValue = string.Format("'{0}'", value);
+                                break;
+                            case TypeCode.DateTime:
+                                DefaultValue = string.Format("'{0}'", value);
+                                break;
+                            case TypeCode.DBNull:
+                                DefaultValue = string.Format("'{0}'", "");
+                                break;
+                            case TypeCode.Decimal:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Double:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Empty:
+                                DefaultValue = string.Format("'{0}'", "");
+                                break;
+                            case TypeCode.Int16:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Int32:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Int64:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Object:
+                                DefaultValue = string.Format("'{0}'", value.ToString());
+                                break;
+                            case TypeCode.SByte:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.Single:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.String:
+                                DefaultValue = string.Format("'{0}'", value);
+                                break;
+                            case TypeCode.UInt16:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.UInt32:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            case TypeCode.UInt64:
+                                DefaultValue = string.Format("{0}", value);
+                                break;
+                            default:
+                                DefaultValue = string.Format("'{0}'", value);
+                                break;
+                        }
+                    }
 
 
                 }
@@ -530,6 +594,7 @@ namespace Lib.DapperORM.Repositories
             public bool IsEnum { get; set; } = false;
             public SQLRelationalColumnDefinition RelationalField { get; set; } = null;
             public bool ColumnExists { get; set; } = false;
+            public string DefaultValue { get; set; } = null;
         }
         private class SQLColumnIdentityDefinition
         {
@@ -583,6 +648,7 @@ namespace Lib.DapperORM.Repositories
                                     (column.RelationalField == null ? column.ColumnName : column.ColumnName + column.RelationalField.RelationalColumnName),
                                     (column.RelationalField == null ? column.SpecifiedDbType.ToString() : column.RelationalField.RelationalKeyColumn.SpecifiedDbType.ToString()),
                                     (column.RelationalField == null ? (column.StringLength.HasValue ? "(" + column.StringLength.Value.ToString() + ")" : "") : ((column.RelationalField.RelationalKeyColumn.StringLength.HasValue ? "(" + column.RelationalField.RelationalKeyColumn.StringLength.Value.ToString() + ")" : ""))),
+                                    (column.DefaultValue != null ? $"DEFAULT {column.DefaultValue}" : ""),
                                     (column.RelationalField == null ? (column.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{column.MaskedWith}')" : "") : (column.RelationalField.RelationalKeyColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{column.RelationalField.RelationalKeyColumn.MaskedWith}')" : "")),
                                     (column.RelationalField == null ? (column.Identity.Enabled ? $"IDENTITY({column.Identity.Seed},{column.Identity.Increment})" : "") : ""),
                                     (column.IsNullable || (column.RelationalField != null && (column.RelationalField.RelationProperties.DeleteRule == SQLRelationshipActions.SetNull || column.RelationalField.RelationProperties.UpdateRule == SQLRelationshipActions.SetNull)) ? "NULL" : "NOT NULL")
@@ -625,11 +691,12 @@ namespace Lib.DapperORM.Repositories
                                 ALTER TABLE [{Connection.Database}].[{tableDefinition.Schema}].[{tableDefinition.TableName}]
                                 ALTER COLUMN [{dbColumn.ColumnName}]
                                 {dbColumn.SpecifiedDbType.ToString()}{(dbColumn.StringLength.HasValue ? $"({dbColumn.StringLength.Value.ToString()})" : "")}
+                                {(dbColumn.DefaultValue != null ? $"DEFAULT {dbColumn.DefaultValue}" : "")}
                                 {(dbColumn.CollateType == SQLCollateTypes.Default ? "" : $"COLLATE {dbColumn.CollateType.ToString()}")}
                                 {(dbColumn.IsNullable ? "NULL" : "NOT NULL")}
                                 {"" /*(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")*/}
                                 
-                                ");
+                                ;");
                     }
                     else
                     {
@@ -637,6 +704,7 @@ namespace Lib.DapperORM.Repositories
                                         ALTER TABLE [{Connection.Database}].[{tableDefinition.Schema}].[{tableDefinition.TableName}]
                                         ADD  [{dbColumn.ColumnName}]
                                         {dbColumn.SpecifiedDbType.ToString()}{(dbColumn.StringLength.HasValue ? $"({dbColumn.StringLength.Value.ToString()})" : "")}
+                                        {(dbColumn.DefaultValue != null ? $"DEFAULT {dbColumn.DefaultValue}" : "")}
                                         {(dbColumn.CollateType == SQLCollateTypes.Default ? "" : $"COLLATE {dbColumn.CollateType.ToString()}")}
                                         {(dbColumn.IsNullable ? "NULL" : "NOT NULL")}
                                         {(dbColumn.RelationalField == null ? (dbColumn.Identity.Enabled ? $"IDENTITY({dbColumn.Identity.Seed},{dbColumn.Identity.Increment})" : "") : "")}
@@ -649,7 +717,7 @@ namespace Lib.DapperORM.Repositories
                                              ON DELETE {column.RelationalField.RelationProperties.DeleteRule.GetSQLText()} 
                                              ON UPDATE {column.RelationalField.RelationProperties.UpdateRule.GetSQLText()}
                         ")}
-                ");
+                ;");
 
                     }
 
@@ -657,7 +725,6 @@ namespace Lib.DapperORM.Repositories
 
                 });
             }
-
             Connection.Execute(queryBuilder.ToString());
 
             return true;
