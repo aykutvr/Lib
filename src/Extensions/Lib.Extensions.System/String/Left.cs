@@ -8,6 +8,8 @@
     /// <returns>The left part.</returns>
     public static string Left(this string @this, int length)
     {
+        if (length > @this.Length)
+            length = @this.Length;
         return @this.Substring(0, length);
     }
 }

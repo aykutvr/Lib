@@ -1,5 +1,4 @@
-﻿using Lib.Core.Extensions;
-using Lib.Logger.Dto;
+﻿using Lib.Logger.Dto;
 using Lib.Logger.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +22,8 @@ namespace Lib.Logger.Repositories
             if (serviceProvider != null)
                 _hcx = _serviceProvider.GetService<IHttpContextAccessor>();
 
+
+            System.Linq.Expressions.Expression.Constant(5);
 
         }
 
@@ -125,7 +126,7 @@ namespace Lib.Logger.Repositories
             }
             else if (SharedSettings.LogType == LoggingType.Database)
             {
-                var dapper = _serviceProvider.GetService<Lib.DapperORM.Repositories.IDapperConnectRepository>();
+                var dapper = new Lib.DapperORM.Repositories.DapperConnectRepository();
                 if (dapper == null)
                     return;
 
@@ -135,19 +136,19 @@ namespace Lib.Logger.Repositories
                           insert.AddData<LogDto>(new LogDto
                           {
                               Date = DateTime.Now,
-                              Description = parameters.Details.FromLeft(4000),
+                              Description = parameters.Details.Left(4000),
                               LogType = parameters.LogLevel.ToString(),
-                              Message = parameters.Message.FromLeft(4000),
+                              Message = parameters.Message.Left(4000),
                               UserId = 0,
-                              CallerFilePath = callerFilePath.FromLeft(500),
+                              CallerFilePath = callerFilePath.Left(500),
                               CallerLineNumber = callerLineNumber,
-                              CallerMemberName = callerMemberName.FromLeft(100),
-                              ClientHostName = hostName.FromLeft(100),
-                              RemoteIpAddress = remoteIpAddress.FromLeft(100),
-                              RequestMethod = requestMethod.FromLeft(100),
-                              RequestPath = requestPath.FromLeft(100),
-                              UserName = userName.IfNull("").FromLeft(100),
-                              QueryString = queryString.FromLeft(500),
+                              CallerMemberName = callerMemberName.Left(100),
+                              ClientHostName = hostName.Left(100),
+                              RemoteIpAddress = remoteIpAddress.Left(100),
+                              RequestMethod = requestMethod.Left(100),
+                              RequestPath = requestPath.Left(100),
+                              UserName = userName.IfNull("").Left(100),
+                              QueryString = queryString.Left(500),
                           });
                       });
             }

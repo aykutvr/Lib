@@ -14,6 +14,7 @@ namespace WebApplication1.Dto
         [MaxLength(50)]
         [Lib.DapperORM.Attributes.SpecifiedDbType(System.Data.SqlDbType.NVarChar)]
         public string Password { get; set; } = string.Empty;
-
+        [MaxLength(100)]
+        public string Name { get; set; } = string.Empty;
     }
 }

@@ -5,8 +5,7 @@ namespace WebApplication1.Models
     [Lib.DapperORM.Attributes.Table("Test")]
     public class TestDto
     {
-        [Key]
-        
+        [Lib.DapperORM.Attributes.Key]
         public int Id { get; set; }
         [MaxLength(50)]
         public string Name { get; set; } = string.Empty;

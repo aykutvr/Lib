@@ -11,4 +11,7 @@
         [Lib.DapperORM.Attributes.Relationship(DeleteRule = Lib.DapperORM.SQLRelationshipActions.Cascade, UpdateRule = Lib.DapperORM.SQLRelationshipActions.Cascade)]
         public RoleDto Role { get; set; } = new RoleDto();
     }
+
+
+    
 }

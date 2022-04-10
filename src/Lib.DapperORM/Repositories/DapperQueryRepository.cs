@@ -562,8 +562,8 @@ namespace Lib.DapperORM.Repositories
             SQLTableDefinition tableDefinition = new SQLTableDefinition(typeof(T));
 
             tableDefinition.TableExists = Connection.ExecuteScalar<bool>($@"
-                SELECT EXISTS((SELECT * FROM INFORMATION_SCHEMA.TABLES 
-                WHERE TABLE_SCHEMA = @schemaName AND  TABLE_NAME = @tableName))"
+                SELECT IIF(EXISTS((SELECT * FROM INFORMATION_SCHEMA.TABLES 
+                WHERE TABLE_SCHEMA = @schemaName AND  TABLE_NAME = @tableName)),1,0)"
                 , new
                 {
                     schemaName = tableDefinition.Schema,
@@ -627,7 +627,7 @@ namespace Lib.DapperORM.Repositories
                                 {dbColumn.SpecifiedDbType.ToString()}{(dbColumn.StringLength.HasValue ? $"({dbColumn.StringLength.Value.ToString()})" : "")}
                                 {(dbColumn.CollateType == SQLCollateTypes.Default ? "" : $"COLLATE {dbColumn.CollateType.ToString()}")}
                                 {(dbColumn.IsNullable ? "NULL" : "NOT NULL")}
-                                {(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")}
+                                {"" /*(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")*/}
                                 
                                 ");
                     }
@@ -635,12 +635,12 @@ namespace Lib.DapperORM.Repositories
                     {
                         queryBuilder.AppendLine($@"
                                         ALTER TABLE [{Connection.Database}].[{tableDefinition.Schema}].[{tableDefinition.TableName}]
-                                        ADD COLUMN  [{dbColumn.ColumnName}]
+                                        ADD  [{dbColumn.ColumnName}]
                                         {dbColumn.SpecifiedDbType.ToString()}{(dbColumn.StringLength.HasValue ? $"({dbColumn.StringLength.Value.ToString()})" : "")}
                                         {(dbColumn.CollateType == SQLCollateTypes.Default ? "" : $"COLLATE {dbColumn.CollateType.ToString()}")}
                                         {(dbColumn.IsNullable ? "NULL" : "NOT NULL")}
                                         {(dbColumn.RelationalField == null ? (dbColumn.Identity.Enabled ? $"IDENTITY({dbColumn.Identity.Seed},{dbColumn.Identity.Increment})" : "") : "")}
-                                        {(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")}
+                                        {"" /*(dbColumn.MaskedWith.IsNotNullOrEmpty() ? $"MASKED WITH (FUNCTION = '{dbColumn.MaskedWith}')" : "")*/}
                                         {(dbColumn.PrimaryKey ? $" CONSTRAINT {tableDefinition.TableName}_{dbColumn.ColumnName}_PK PRIMARY KEY ( [{dbColumn.ColumnName}] ASC)" : "")}
                                         {(column.RelationalField == null ? "" : $@"
                                             ,CONSTRAINT FK_{tableDefinition.TableName}_{column.RelationalField.RelationalColumnName} 

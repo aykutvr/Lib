@@ -6,7 +6,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <Version>22.2.5.0</Version>
+    <Version>22.4.10.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

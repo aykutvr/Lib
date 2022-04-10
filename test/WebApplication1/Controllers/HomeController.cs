@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Belgrade.SqlClient;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Models;
 
@@ -15,7 +16,6 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-
             return View();
 
         }
@@ -31,6 +31,10 @@ namespace WebApplication1.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        //public IActionResult BelgradeORM()
+        //{
+        //}
+
         public IActionResult Shop()
         {
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.UserDto>();
@@ -38,6 +42,28 @@ namespace WebApplication1.Controllers
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.UsersRolesDto>();
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.CategoryDto>();
             this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Dto.ProductDto>();
+
+            this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert(data =>
+            {
+                for (int i = 0; i < 100; i++)
+                    data.AddData<Dto.UserDto>(new Dto.UserDto
+                    {
+                        EmailAddr = $"user{i}@mail.com",
+                        Password = "1234"
+                    });
+
+                data.AddData<Dto.RoleDto>(new Dto.RoleDto { Name = "Administrator" }, out long adminRoleId);
+                data.AddData<Dto.RoleDto>(new Dto.RoleDto { Name = "Moderator" }, out long motedatorRoleId);
+                data.AddData<Dto.RoleDto>(new Dto.RoleDto { Name = "Default" }, out long defaultRoleId);
+
+                data.AddData<Dto.CategoryDto>(new Dto.CategoryDto { Name = "Bilgisayar" }, out long bilgisayarId);
+                data.AddData<Dto.CategoryDto>(new Dto.CategoryDto { Name = "Elektronik" }, out long elektronikId);
+                data.AddData<Dto.CategoryDto>(new Dto.CategoryDto { Name = "Cep Telefonu" }, out long cepTelefonuId);
+                data.AddData<Dto.CategoryDto>(new Dto.CategoryDto { Name = "Erkek Giyim" }, out long erkekGiyimId);
+                data.AddData<Dto.CategoryDto>(new Dto.CategoryDto { Name = "Kadın Giyim" }, out long kadinGiyimId);
+            });
+
+
 
             return Ok();
         }
@@ -47,9 +73,12 @@ namespace WebApplication1.Controllers
             #region Dapper Tests
 
             
+
+
+            //var createOrAlterTable = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Models.TestDto>();
+            //var createOrAlterTable2 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Models.TestDetailDto>();
             
-            var createOrAlterTable = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Models.TestDto>();
-            var createOrAlterTable2 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).CreateOrAlterTable<Models.TestDetailDto>();
+            
             var step01 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert().AddData<Models.TestDto>(new TestDto { Description = "Description 1", Name = "Step 1" }).GetResult();
             var step02 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert(config =>
             {
@@ -63,7 +92,7 @@ namespace WebApplication1.Controllers
             });
             var step03 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Insert<Models.TestDto>(new TestDto { Description = "Description 3", Name = "Step 3" });
             var step04 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).DataTable("SELECT * FROM Test");
-            var step05 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Execute("INSERT INTO Test (Name,Description) VALUES ('Step 5','Description 5')");
+            var step05 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Execute("INSERT INTO Test (Name,Description,CollateType) OUTPUT INSERTED.Id VALUES ('Step 5','Description 5',@cllte)", new { cllte = Lib.DapperORM.SQLCollateTypes.Turkish_100_BIN});
             var step06 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).ExecuteScalar("SELECT COUNT(*) FROM Test");
             var step07 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).ExecuteScalar<int>("SELECT COUNT(*) FROM Test");
             var step08 = this.LibWidgets().Dapper().Connect(SharedSettings.ConnectionString).Get<Models.TestDto>(step05);

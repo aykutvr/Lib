@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>22.4.10.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Lib.Core\Lib.Core.csproj" />
-    <ProjectReference Include="..\Lib.Dapper\Lib.DapperORM.csproj" />
+    <ProjectReference Include="..\Lib.DapperORM\Lib.DapperORM.csproj" />
   </ItemGroup>
 
 </Project>

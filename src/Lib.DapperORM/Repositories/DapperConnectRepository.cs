@@ -15,6 +15,10 @@ namespace Lib.DapperORM.Repositories
         {
             return Connect(connectionString: SharedSettings.ConnectionString, transaction: null);
         }
+        public void Connect(bool withTransaction, Action<IDapperQueryRepository> queryActions)
+            => Connect(SharedSettings.ConnectionString, withTransaction, queryActions);
+        public void Connect( Action<IDapperQueryRepository> queryActions)
+            => Connect(SharedSettings.ConnectionString, true, queryActions);
         public IDapperQueryRepository Connect(string connectionString, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             return Connect(connectionString : connectionString,transaction: null, callerFilePath, callerMemberName, callerLineNumber);
@@ -46,7 +50,7 @@ namespace Lib.DapperORM.Repositories
         public void Connect(string connectionString, bool withTransaction, Action<IDapperQueryRepository> queryActions, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "", [CallerLineNumber] int callerLineNumber = -1)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            
+            connection.Open();
             IDbTransaction transaction = connection.BeginTransaction();
             Connect(connection, transaction, queryActions, callerFilePath, callerMemberName, callerLineNumber);
             

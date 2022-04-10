@@ -4,8 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>22.2.5.0</Version>
+    <Version>22.4.10.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Belgrade.Sql.Client" Version="1.1.4" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Lib.DapperORM.NetCore\Lib.DapperORM.Web.csproj" />

@@ -8,10 +8,10 @@
     <Authors>Aykut Vuruskaner</Authors>
     <RepositoryUrl>https://github.com/aykutvr/Lib/tree/master/src/Lib.DapperORM</RepositoryUrl>
     <PackageProjectUrl>https://github.com/aykutvr/Lib</PackageProjectUrl>
-    <AssemblyVersion>22.2.5.0</AssemblyVersion>
-    <FileVersion>22.2.5.0</FileVersion>
+    <AssemblyVersion>22.4.10.0</AssemblyVersion>
+    <FileVersion>22.4.10.0</FileVersion>
     <Description>This library contains easy functions and extension methods for using Dapper.</Description>
-    <Version>22.2.5.0</Version>
+    <Version>22.4.10.0</Version>
     <PackageId>Lib.DapperORM</PackageId>
     <Company>Aykut Vuruşkaner</Company>
     <Product>Lib.DapperORM</Product>
